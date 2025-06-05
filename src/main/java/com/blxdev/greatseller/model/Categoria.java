@@ -1,33 +1,19 @@
 package com.blxdev.greatseller.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-public class Product {
-
+@Table(name="categoria")
+public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String description;
-    private Double price;
-    private boolean available;
-
+    private String nombre;
     @CreationTimestamp
-    private LocalDateTime registerdate;
-
-    @ManyToOne
-    @JoinColumn(name="idmaker")
-    private Maker maker;
-
-    @ManyToOne
-    @JoinColumn(name="idlocation")
-    private Location location;
+    private LocalDateTime fecha_registro;
 
     public Long getId() {
         return id;
@@ -35,5 +21,13 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
