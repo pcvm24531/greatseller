@@ -1,12 +1,14 @@
 package com.blxdev.greatseller.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="categoria")
+@Data
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -24,7 +24,7 @@ public class Producto {
     private String forma_farmaceutica;//Tablet, capsula, jarabe, etc.
     private String concentracion;//Ej. 500 mg, 5%
     private String presentacion;//Caja, frasco, etc.
-    private boolean requiere_receta;
+    private Boolean requiere_receta;
     private String registro_sanitario;
     private Boolean estado;//Si esta disponible para la venta
     private String uso_terapeutico;//Indicacion general(dolor, fiebre, etc.)

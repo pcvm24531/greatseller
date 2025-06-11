@@ -1,12 +1,13 @@
 package com.blxdev.greatseller.model;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "producto_venta")
+@Data
 public class ProductoVenta {
-    @EmbeddedId
-    private ProductoVentaId id = new ProductoVentaId();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 }

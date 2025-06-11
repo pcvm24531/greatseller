@@ -1,6 +1,7 @@
 package com.blxdev.greatseller.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name="cliente")
+@Data
 public class Cliente {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
