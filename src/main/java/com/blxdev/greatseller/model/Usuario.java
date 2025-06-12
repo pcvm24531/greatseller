@@ -3,6 +3,7 @@ package com.blxdev.greatseller.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -28,5 +29,6 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore//Evita recursividad si retornamos usuario con ventas
+    @ToString.Exclude
     private List<Venta> ventas;
 }
