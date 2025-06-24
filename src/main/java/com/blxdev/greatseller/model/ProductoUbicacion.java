@@ -1,44 +1,39 @@
 package com.blxdev.greatseller.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "producto_ubicacion")
+@Data
 public class ProductoUbicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //Relación con producto
+    @Column(nullable = false, length = 100)
+    private String almacen;//Nombre del almacen, galpón, depósito, etc.
+
+    @Column(length = 100)
+    private String sector;//estante, pasillo, sector, etc.
+
+    @Column(length = 100)
+    private String estante;//
+
+    @Column(length = 100)
+    private String nivel;
+
+    @Column(nullable = false)
+    private Integer cantidad;//Cantidad de articulos en este lugar específico
+
+    @Column(length = 250)
+    private String observacion;//Observciones o detalles adicionales
+
+    //Relacion con producto
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_producto")
+    @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
-
-    //Relacion con ubicación
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_ubicacion")
-    private Ubicacion ubicacion;
-
-    //Datos farmaceuticos
-    private String lote;
-    private Double precio_compra;
-    private Double precio_venta;
-
-    //Control de inventario
-    private Integer stock;
-    private Integer stock_minimo;
-    private Integer stock_maximo;
-
-    //Fechas
-    private LocalDate fecha_ingreso;
-    private LocalDate fecha_vencimiento;
-
-    //Auditoria básica
-    private String creado_por;
-    private LocalDate fecha_creacion;
-    private String modificado_por;
-    private LocalDate fecha_modificacion;
 
 }

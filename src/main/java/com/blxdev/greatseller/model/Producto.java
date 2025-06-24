@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -27,35 +28,35 @@ public class Producto {
     @Column(length = 500)
     private String descripcion;//
 
-    @Column(name = "precio_venta", nullable = false, precision = 10, scale = 2)
-    private BigDecimal precioVenta;
-
     @Column(name = "precio_costo", nullable = false, precision = 10, scale = 2)
     private BigDecimal precioCosto;
 
+    @Column(name = "precio_venta", nullable = false, precision = 10, scale = 2)
+    private BigDecimal precioVenta;
+
     @Column(nullable = false)
     private Integer stock;
-    private String formaFarmaceutica;//Tablet, capsula, jarabe, etc.
-    private String concentracion;//Ej. 500 mg, 5%
-    private String presentacion;//Caja, frasco, etc.
-    private Boolean requiereReceta;
-    private String registroSanitario;
+
+    @Column(nullable = false)
     private Boolean estado;//Si esta disponible para la venta
-    private String usoTerapeutico;//Indicacion general(dolor, fiebre, etc.)
-    private String condicion_almacenamiento;//Refrigerado, seco
 
-    private LocalDateTime fechaVencimiento;
-
-    @ManyToOne
-    @JoinColumn(name = "idCategoria")
-    private Categoria categoria;
-    @ManyToOne
-    @JoinColumn(name = "idProveedor")
-    private Proveedor proveedor;
     @CreationTimestamp
     private LocalDateTime fecha_registro;
-    @ManyToOne
-    @JoinColumn(name = "idFabricante")
+
+/*
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCategoria", nullable = false)
+    private Categoria categoria;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idProveedor", nullable = false)
+    private Proveedor proveedor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idFabricante", nullable = false)
     private Fabricante fabricante;//Laboratorio fabricante
 
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductoFoto> fotos;
+*/
 }
