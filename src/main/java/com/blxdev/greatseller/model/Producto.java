@@ -41,12 +41,8 @@ public class Producto {
     private Boolean estado;//Si esta disponible para la venta
 
     @CreationTimestamp
-    private LocalDateTime fecha_registro;
+    private LocalDateTime fechaRegistro;
 
-/*
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCategoria", nullable = false)
-    private Categoria categoria;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProveedor", nullable = false)
@@ -58,5 +54,11 @@ public class Producto {
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductoFoto> fotos;
-*/
+
+    @OneToMany(mappedBy = "producto")
+    private List<ProductoUbicacion> ubicaciones;
+
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductoVenta> ventas;
+
 }

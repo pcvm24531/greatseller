@@ -25,7 +25,7 @@ public class Venta {
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    private LocalDateTime fecha_registro;
+    private LocalDateTime fechaRegistro;
 
     //Usuario que realizó la venta
     @ManyToOne(optional = false)

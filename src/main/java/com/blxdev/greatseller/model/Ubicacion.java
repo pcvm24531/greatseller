@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "ubicacion")
@@ -12,18 +13,17 @@ import java.time.LocalDateTime;
 public class Ubicacion {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String pasillo;
-    private String estante;
-    private String nivel;
-    private String posicion;
-    private String descripcion;
+
     @CreationTimestamp
-    private LocalDateTime fecha_registro;
+    private LocalDateTime fechaRegistro;
 
     @ManyToOne
-    @JoinColumn(name = "id_tienda")
+    @JoinColumn(name = "idTienda")
     private Tienda tienda;
+
+    @OneToMany(mappedBy = "ubicacion")
+    private List<ProductoUbicacion> productos;
 
 }

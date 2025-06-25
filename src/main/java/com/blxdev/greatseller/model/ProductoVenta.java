@@ -21,10 +21,10 @@ public class ProductoVenta {
     private BigDecimal precioUnitario;
 
     @Column(nullable = false)
-    private BigDecimal subTotal;
+    private BigDecimal descuento = BigDecimal.ZERO;
 
     @Column(nullable = false)
-    private BigDecimal descuento = BigDecimal.ZERO;
+    private BigDecimal subTotal;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idVenta", nullable = false)

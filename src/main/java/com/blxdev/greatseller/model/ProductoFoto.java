@@ -2,6 +2,9 @@ package com.blxdev.greatseller.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "producto_foto")
@@ -25,4 +28,7 @@ public class ProductoFoto {
     @ManyToOne
     @JoinColumn(name = "idProducto", nullable = false)
     private Producto producto;
+
+    @CreationTimestamp
+    private LocalDateTime fechaRegistro;
 }

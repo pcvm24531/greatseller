@@ -2,13 +2,16 @@ package com.blxdev.greatseller.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "producto_ubicacion")
 @Data
 public class ProductoUbicacion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,9 +34,17 @@ public class ProductoUbicacion {
     @Column(length = 250)
     private String observacion;//Observciones o detalles adicionales
 
+    @CreationTimestamp
+    private LocalDateTime fechaRegistro;
+
     //Relacion con producto
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_producto", nullable = false)
+    @JoinColumn(name = "idProducto", nullable = false)
     private Producto producto;
+
+    //Relación Ubicacion
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idUbicacion", nullable = false)
+    private Ubicacion ubicacion;
 
 }
