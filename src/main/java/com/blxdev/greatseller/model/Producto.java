@@ -58,7 +58,7 @@ public class Producto {
     @OneToMany(mappedBy = "producto")
     private List<ProductoUbicacion> ubicaciones;
 
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductoVenta> ventas;
 
 }

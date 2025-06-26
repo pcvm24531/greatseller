@@ -29,12 +29,12 @@ public class Venta {
 
     //Usuario que realizó la venta
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
     //Cliente al que se vendio
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
     //Relacion con tabla relacional ProductoVenta
