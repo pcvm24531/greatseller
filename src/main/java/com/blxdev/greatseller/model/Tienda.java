@@ -20,5 +20,5 @@ public class Tienda {
     private String telefono;
     private String ciudad;
     @CreationTimestamp
-    private LocalDate fecha_registro;
+    private LocalDate fechaRegistro;
 }

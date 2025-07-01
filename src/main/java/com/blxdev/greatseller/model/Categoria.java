@@ -15,7 +15,7 @@ public class Categoria {
     private Long id;
     private String nombre;
     @CreationTimestamp
-    private LocalDateTime fecha_registro;
+    private LocalDateTime fechaRegistro;
 
     public Long getId() {
         return id;

@@ -20,7 +20,7 @@ public class Cliente {
     private String nit_ci;
     private String direccion;
     @CreationTimestamp
-    private LocalDateTime fecha_registro;
+    private LocalDateTime fechaRegistro;
     @OneToMany(mappedBy = "cliente")
     private List<Venta> ventas;
 }

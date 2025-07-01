@@ -21,5 +21,5 @@ public class Proveedor {
     private String razon_social;
     private String nit;
     @CreationTimestamp
-    private LocalDateTime fecha_registro;
+    private LocalDateTime fechaRegistro;
 }
