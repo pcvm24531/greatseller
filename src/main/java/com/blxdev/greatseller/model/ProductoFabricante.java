@@ -12,14 +12,16 @@ public class ProductoFabricante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProducto")
-    private Producto producto;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idFabricante")
-    private Fabricante fabricante;
-
     @CreationTimestamp
     private LocalDateTime fechaRegistro;
+
+    //Relacion con producto
+    @ManyToOne
+    @JoinColumn(name = "idProducto", nullable = false)
+    private Producto producto;
+
+    //Relación Ubicacion
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idFabricante", nullable = false)
+    private Fabricante fabricante;
 }

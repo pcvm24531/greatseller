@@ -44,21 +44,22 @@ public class Producto {
     private LocalDateTime fechaRegistro;
 
 
+
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProveedor", nullable = false)
     private Proveedor proveedor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idFabricante", nullable = false)
-    private Fabricante fabricante;//Laboratorio fabricante
-
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductoFoto> fotos;
+    @OneToMany(mappedBy = "producto")
+    private List<ProductoFoto> productoFotos;
 
     @OneToMany(mappedBy = "producto")
-    private List<ProductoUbicacion> ubicaciones;
+    private List<ProductoUbicacion> productoUbicaciones;
 
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductoVenta> ventas;
+    @OneToMany(mappedBy = "producto")
+    private List<ProductoVenta> productoVentas;
 
+    @OneToMany(mappedBy = "producto")
+    private List<ProductoFabricante> productoFabricantes;//Laboratorio fabricante
 }

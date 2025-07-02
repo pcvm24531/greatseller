@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "fabricante")
@@ -19,5 +20,8 @@ public class Fabricante {
     private String email;
     @CreationTimestamp
     private LocalDateTime fechaRegistro;
+
+    @OneToMany(mappedBy = "fabricante")
+    private List<ProductoFabricante> productoFabricantes;//Laboratorio fabricante
 
 }
