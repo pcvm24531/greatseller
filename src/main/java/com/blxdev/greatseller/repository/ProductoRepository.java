@@ -1,6 +1,5 @@
 package com.blxdev.greatseller.repository;
 
-
 import com.blxdev.greatseller.model.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
