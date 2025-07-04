@@ -2,6 +2,7 @@ package com.blxdev.greatseller.service;
 
 import com.blxdev.greatseller.model.Usuario;
 import com.blxdev.greatseller.repository.UsuarioRepository;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +41,9 @@ public class UsuarioService {
         }else{
             throw new RuntimeException("Usuario con id:"+id+", no encontrado");
         }
+    }
+
+    public void delete(Long id){
+        usuarioRepository.deleteById(id);
     }
 }
