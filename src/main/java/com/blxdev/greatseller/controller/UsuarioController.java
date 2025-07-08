@@ -19,22 +19,27 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> getAllUsuarios(){
+    public List<Usuario> obtenerTodos(){
         return usuarioService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Usuario obtenerPorId(@PathVariable Long id){
+        return usuarioService.findById(id);
+    }
+
     @PostMapping
-    public Usuario create(@RequestBody Usuario usuario){
+    public Usuario crear(@RequestBody Usuario usuario){
         return usuarioService.save(usuario);
     }
 
     @PutMapping("/{id}")
-    public Usuario modify(@PathVariable Long id, @RequestBody Usuario usuario){
+    public Usuario modificar(@PathVariable Long id, @RequestBody Usuario usuario){
         return usuarioService.update(id, usuario);
     }
 
     @DeleteMapping("/{id}")
-    public void remove(@PathVariable Long id){
+    public void eliminar(@PathVariable Long id){
         usuarioService.delete(id);
     }
 }

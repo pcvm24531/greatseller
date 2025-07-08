@@ -1,12 +1,13 @@
 package com.blxdev.greatseller.service;
 
+import com.blxdev.greatseller.exceptions.CrudExceptions;
 import com.blxdev.greatseller.model.Usuario;
 import com.blxdev.greatseller.repository.UsuarioRepository;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -21,6 +22,11 @@ public class UsuarioService {
 
     public List<Usuario> findAll(){
         return usuarioRepository.findAll();
+    }
+
+    public Usuario findById(Long id){
+        return usuarioRepository.findById(id)
+                .orElseThrow( ()->new CrudExceptions("No se encontró un usuario con id: "+id) );
     }
 
     public Usuario save(Usuario usuario){
@@ -39,11 +45,14 @@ public class UsuarioService {
             usuarioUpdate.setTelefono(usuario.getTelefono());
             return usuarioRepository.save(usuarioUpdate);
         }else{
-            throw new RuntimeException("Usuario con id:"+id+", no encontrado");
+            throw new CrudExceptions("Usuario con id:"+id+", no encontrado para modificar!");
         }
     }
 
     public void delete(Long id){
+        if( !usuarioRepository.existsById(id) ){
+            throw new CrudExceptions("No se puede eliminar el usuario con id:"+id+", no existe!");
+        }
         usuarioRepository.deleteById(id);
     }
 }
