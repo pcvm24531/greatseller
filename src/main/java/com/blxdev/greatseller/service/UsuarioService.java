@@ -4,6 +4,7 @@ import com.blxdev.greatseller.exceptions.CrudExceptions;
 import com.blxdev.greatseller.model.Usuario;
 import com.blxdev.greatseller.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +26,9 @@ public class UsuarioService {
     }
 
     public Usuario findById(Long id){
-        return usuarioRepository.findById(id)
+        Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow( ()->new CrudExceptions("No se encontró un usuario con id: "+id) );
+        return ResponseEntity.ok(usuario).getBody();
     }
 
     public Usuario save(Usuario usuario){
