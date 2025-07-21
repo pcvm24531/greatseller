@@ -3,6 +3,7 @@ package com.blxdev.greatseller.controller;
 import com.blxdev.greatseller.model.Usuario;
 import com.blxdev.greatseller.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,17 +20,27 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> getAllUsuarios(){
+    public List<Usuario> obtenerTodos(){
         return usuarioService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Usuario obtenerPorId(@PathVariable Long id){
+        return usuarioService.findById(id);
+    }
+
     @PostMapping
-    public Usuario create(@RequestBody Usuario usuario){
+    public Usuario crear(@RequestBody Usuario usuario){
         return usuarioService.save(usuario);
     }
 
     @PutMapping("/{id}")
-    public Usuario update(@PathVariable Long id, @RequestBody Usuario usuario){
+    public Usuario modificar(@PathVariable Long id, @RequestBody Usuario usuario){
         return usuarioService.update(id, usuario);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+        usuarioService.delete(id);
     }
 }
