@@ -1,14 +1,13 @@
 package com.blxdev.greatseller.service;
 
+import com.blxdev.greatseller.dto.UsuarioDTO;
 import com.blxdev.greatseller.exceptions.CrudExceptions;
 import com.blxdev.greatseller.model.Usuario;
 import com.blxdev.greatseller.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -26,12 +25,18 @@ public class UsuarioService {
     }
 
     public Usuario findById(Long id){
-        Usuario usuario = usuarioRepository.findById(id)
+        return usuarioRepository.findById(id)
                 .orElseThrow( ()->new CrudExceptions("No se encontró un usuario con id: "+id) );
-        return ResponseEntity.ok(usuario).getBody();
     }
 
-    public Usuario save(Usuario usuario){
+    public Usuario save(UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario();
+        usuario.setNombre(usuarioDTO.getNombre());
+        usuario.setApellido(usuarioDTO.getApellido());
+        usuario.setUsername(usuarioDTO.getUsername());
+        usuario.setPassword(usuarioDTO.getPassword());
+        usuario.setRol(usuarioDTO.getRol());
+        usuario.setDireccion(usuarioDTO.getDireccion());
         return usuarioRepository.save(usuario);
     }
 
