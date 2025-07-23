@@ -1,6 +1,7 @@
 package com.blxdev.greatseller.controller;
 
-import com.blxdev.greatseller.dto.UsuarioDTO;
+import com.blxdev.greatseller.dto.UsuarioCreateDTO;
+import com.blxdev.greatseller.dto.UsuarioUpdateDTO;
 import com.blxdev.greatseller.model.Usuario;
 import com.blxdev.greatseller.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,15 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@Validated @RequestBody UsuarioDTO usuarioDTO){
-        Usuario usuario = usuarioService.save(usuarioDTO);
+    public ResponseEntity<?> crear(@Validated @RequestBody UsuarioCreateDTO usuarioCreateDTO){
+        Usuario usuario = usuarioService.save(usuarioCreateDTO);
         return ResponseEntity.ok(usuario);
     }
 
     @PutMapping("/{id}")
-    public Usuario modificar(@PathVariable Long id, @RequestBody Usuario usuario){
-        return usuarioService.update(id, usuario);
+    public ResponseEntity<?> modificar(@PathVariable Long id, @Validated @RequestBody UsuarioUpdateDTO usuarioUpdateDTO){
+        Usuario usuario = usuarioService.update(id, usuarioUpdateDTO);
+        return ResponseEntity.ok(usuario);
     }
 
     @DeleteMapping("/{id}")

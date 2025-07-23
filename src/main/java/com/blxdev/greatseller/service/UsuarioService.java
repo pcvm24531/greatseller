@@ -1,6 +1,7 @@
 package com.blxdev.greatseller.service;
 
-import com.blxdev.greatseller.dto.UsuarioDTO;
+import com.blxdev.greatseller.dto.UsuarioCreateDTO;
+import com.blxdev.greatseller.dto.UsuarioUpdateDTO;
 import com.blxdev.greatseller.exceptions.CrudExceptions;
 import com.blxdev.greatseller.model.Usuario;
 import com.blxdev.greatseller.repository.UsuarioRepository;
@@ -29,27 +30,27 @@ public class UsuarioService {
                 .orElseThrow( ()->new CrudExceptions("No se encontró un usuario con id: "+id) );
     }
 
-    public Usuario save(UsuarioDTO usuarioDTO){
+    public Usuario save(UsuarioCreateDTO usuarioCreateDTO){
         Usuario usuario = new Usuario();
-        usuario.setNombre(usuarioDTO.getNombre());
-        usuario.setApellido(usuarioDTO.getApellido());
-        usuario.setUsername(usuarioDTO.getUsername());
-        usuario.setPassword(usuarioDTO.getPassword());
-        usuario.setRol(usuarioDTO.getRol());
-        usuario.setDireccion(usuarioDTO.getDireccion());
+        usuario.setNombre(usuarioCreateDTO.getNombre());
+        usuario.setApellido(usuarioCreateDTO.getApellido());
+        usuario.setUsername(usuarioCreateDTO.getUsername());
+        usuario.setPassword(usuarioCreateDTO.getPassword());
+        usuario.setRol(usuarioCreateDTO.getRol());
+        usuario.setDireccion(usuarioCreateDTO.getDireccion());
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario update(Long id, Usuario usuario){
+    public Usuario update(Long id, UsuarioUpdateDTO usuarioUpdateDTO){
         Optional<Usuario> existeUsuario = usuarioRepository.findById(id);
         if( existeUsuario.isPresent() ){
             Usuario usuarioUpdate = existeUsuario.get();
-            usuarioUpdate.setNombre(usuario.getNombre());
-            usuarioUpdate.setApellido(usuario.getApellido());
-            usuarioUpdate.setPassword(usuario.getPassword());
-            usuarioUpdate.setUsername(usuario.getUsername());
-            usuarioUpdate.setDireccion(usuario.getDireccion());
-            usuarioUpdate.setTelefono(usuario.getTelefono());
+            usuarioUpdate.setNombre(usuarioUpdateDTO.getNombre());
+            usuarioUpdate.setApellido(usuarioUpdateDTO.getApellido());
+            usuarioUpdate.setPassword(usuarioUpdateDTO.getPassword());
+            usuarioUpdate.setUsername(usuarioUpdateDTO.getUsername());
+            usuarioUpdate.setDireccion(usuarioUpdateDTO.getDireccion());
+            //usuarioUpdate.setTelefono(usuarioDTO.getTelefono());
             return usuarioRepository.save(usuarioUpdate);
         }else{
             throw new CrudExceptions("Usuario con id:"+id+", no encontrado para modificar!");
