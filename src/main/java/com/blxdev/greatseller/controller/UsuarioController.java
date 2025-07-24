@@ -27,11 +27,6 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Usuario obtenerPorId(@PathVariable Long id){
-        return usuarioService.findById(id);
-    }
-
     @PostMapping
     public ResponseEntity<?> crear(@Validated @RequestBody UsuarioCreateDTO usuarioCreateDTO){
         Usuario usuario = usuarioService.save(usuarioCreateDTO);
@@ -42,6 +37,11 @@ public class UsuarioController {
     public ResponseEntity<?> modificar(@PathVariable Long id, @Validated @RequestBody UsuarioUpdateDTO usuarioUpdateDTO){
         Usuario usuario = usuarioService.update(id, usuarioUpdateDTO);
         return ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping("/{id}")
+    public Usuario obtenerPorId(@PathVariable Long id){
+        return usuarioService.findById(id);
     }
 
     @DeleteMapping("/{id}")

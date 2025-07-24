@@ -1,50 +1,30 @@
-package com.blxdev.greatseller.model;
+package com.blxdev.greatseller.dto;
 
-import jakarta.annotation.Nullable;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
+import jakarta.validation.constraints.*;
 
-import java.time.LocalDateTime;
+public class ProveedorCreateDTO {
 
-@Entity
-@Table(name="proveedor")
-@Data
-public class Proveedor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
+    @NotNull(message = "El combre es obligatorio.")
+    @Size(min=2, max = 30, message = "El nombre debe contener entre 2 y 30 caracteres.")
     private String nombre;
 
-    @Column(nullable = false)
+    @Pattern(regexp = "^[0-9]{8,10}$", message = "El telefono debe contener 10 digitos")
     private String telefono;
 
-    @Column(nullable = false)
+    @NotBlank(message = "La direccion es obligatoria")
+    @Size(min = 5, max = 150, message = "La direccion debe contener entre 5 y 150 caracteres.")
     private String direccion;
 
-    @Column(nullable = false)
+    @NotBlank(message = "El email es obligatorio")
+    @Email(message = "El email debe tener un formato valido")
     private String email;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Este campo es  requerido")
     private String razon_social;
 
-    @Column(nullable = false, unique = true)
+    @Pattern(regexp = "^[0-9]{10,15}$", message = "El NIT debe contener entre 10 y 15 caracteres numericos")
+    @NotBlank(message = "El NIT es requerido.")
     private String nit;
-
-    @CreationTimestamp
-    private LocalDateTime fechaRegistro;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -92,13 +72,5 @@ public class Proveedor {
 
     public void setNit(String nit) {
         this.nit = nit;
-    }
-
-    public LocalDateTime getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
     }
 }
