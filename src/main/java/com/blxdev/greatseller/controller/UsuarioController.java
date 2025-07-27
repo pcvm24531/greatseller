@@ -23,8 +23,9 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> obtenerTodos(){
-        return usuarioService.findAll();
+    public ResponseEntity<?> obtenerTodos(){
+        List<Usuario> lista = usuarioService.findAll();
+        return ResponseEntity.ok(lista);
     }
 
     @PostMapping
@@ -40,8 +41,9 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public Usuario obtenerPorId(@PathVariable Long id){
-        return usuarioService.findById(id);
+    public ResponseEntity<?> obtenerPorId(@PathVariable Long id){
+        Usuario usuario = usuarioService.findById(id);
+        return ResponseEntity.ok(usuario);
     }
 
     @DeleteMapping("/{id}")
