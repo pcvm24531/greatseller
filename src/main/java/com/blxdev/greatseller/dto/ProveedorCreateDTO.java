@@ -8,7 +8,7 @@ public class ProveedorCreateDTO {
     @Size(min=2, max = 30, message = "El nombre debe contener entre 2 y 30 caracteres.")
     private String nombre;
 
-    @Pattern(regexp = "^[0-9]{8,10}$", message = "El telefono debe contener 10 digitos")
+    @Pattern(regexp = "^[0-9]{7,10}$", message = "El telefono debe contener entre 7 y 10 digitos")
     private String telefono;
 
     @NotBlank(message = "La direccion es obligatoria")
@@ -22,7 +22,7 @@ public class ProveedorCreateDTO {
     @NotBlank(message = "Este campo es  requerido")
     private String razon_social;
 
-    @Pattern(regexp = "^[0-9]{10,15}$", message = "El NIT debe contener entre 10 y 15 caracteres numericos")
+    @Pattern(regexp = "^[0-9]{5,15}$", message = "El NIT debe contener entre 5 y 15 caracteres numericos")
     @NotBlank(message = "El NIT es requerido.")
     private String nit;
 
