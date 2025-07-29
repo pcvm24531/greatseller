@@ -23,8 +23,8 @@ public class ProveedorController {
     }
 
     @GetMapping
-    public ResponseEntity<?> obtenerTodos(){
-        List<Proveedor> proveedors = proveedorService.findAll();
+    public ResponseEntity<List<Proveedor>> obtenerTodosActivos(){
+        List<Proveedor> proveedors = proveedorService.findAllActivos();
         return ResponseEntity.ok(proveedors);
     }
 

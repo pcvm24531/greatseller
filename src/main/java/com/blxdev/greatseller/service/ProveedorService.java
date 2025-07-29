@@ -21,8 +21,8 @@ public class ProveedorService {
         this.proveedorRepository = proveedorRepository;
     }
 
-    public List<Proveedor> findAll(){
-        return proveedorRepository.findAll();
+    public List<Proveedor> findAllActivos(){
+        return proveedorRepository.findAllByActivoTrue();
     }
 
     public Proveedor save(ProveedorCreateDTO proveedorCreateDTO){
@@ -55,9 +55,15 @@ public class ProveedorService {
     }
 
     public void delete(Long id){
-        if ( !proveedorRepository.existsById(id) ){
+        //Delete físico
+        /*if ( !proveedorRepository.existsById(id) ){
             throw new CrudExceptions("No se pudo eliminar el proveedor con id :"+id+".");
         }
-        proveedorRepository.deleteById(id);
+        proveedorRepository.deleteById(id);*/
+
+        //Delete lógico
+        Proveedor proveedor = proveedorRepository.findById(id).orElseThrow( ()->new CrudExceptions("Usuario con id:"+id+", no encontrado.") );
+        proveedor.setActivo(false);
+        proveedorRepository.save(proveedor);
     }
 }

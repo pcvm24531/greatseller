@@ -38,6 +38,9 @@ public class Proveedor {
     @CreationTimestamp
     private LocalDateTime fechaRegistro;
 
+    @Column(nullable = false)
+    private Boolean activo;
+
     public Long getId() {
         return id;
     }
@@ -100,5 +103,13 @@ public class Proveedor {
 
     public void setFechaRegistro(LocalDateTime fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }
