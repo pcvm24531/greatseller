@@ -36,6 +36,9 @@ public class Usuario {
     @Column(nullable = false)
     private String rol;
 
+    @Column(nullable = false)
+    private Boolean activo;
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore//Evita recursividad si retornamos usuario con ventas
     @ToString.Exclude
@@ -103,5 +106,13 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }
