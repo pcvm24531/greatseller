@@ -17,19 +17,14 @@ public class UsuarioController {
 
     @Autowired
     private final UsuarioService usuarioService;
-
     public UsuarioController(UsuarioService usuarioService){
         this.usuarioService = usuarioService;
     }
 
     @GetMapping
-    public List<Usuario> obtenerTodos(){
-        return usuarioService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public Usuario obtenerPorId(@PathVariable Long id){
-        return usuarioService.findById(id);
+    public ResponseEntity<?> obtenerTodos(){
+        List<Usuario> lista = usuarioService.findAll();
+        return ResponseEntity.ok(lista);
     }
 
     @PostMapping
@@ -41,6 +36,12 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<?> modificar(@PathVariable Long id, @Validated @RequestBody UsuarioUpdateDTO usuarioUpdateDTO){
         Usuario usuario = usuarioService.update(id, usuarioUpdateDTO);
+        return ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerPorId(@PathVariable Long id){
+        Usuario usuario = usuarioService.findById(id);
         return ResponseEntity.ok(usuario);
     }
 
