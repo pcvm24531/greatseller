@@ -21,8 +21,8 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario> findAll(){
-        return usuarioRepository.findAll();
+    public List<Usuario> findAllActivos(){
+        return usuarioRepository.findAllByActivoTrue();
     }
 
     public Usuario findById(Long id){
@@ -61,6 +61,8 @@ public class UsuarioService {
         if( !usuarioRepository.existsById(id) ){
             throw new CrudExceptions("No se puede eliminar el usuario con id:"+id+", no existe!");
         }
-        usuarioRepository.deleteById(id);
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow( ()->new CrudExceptions("No se puede  eliminar el usuario: "+id));
+        usuario.setActivo(false);
+        usuarioRepository.save(usuario);
     }
 }
