@@ -1,31 +1,20 @@
-package com.blxdev.greatseller.model;
+package com.blxdev.greatseller.dto;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name="categoria")
-@Data
-public class Categoria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CategoriaDTO {
+
+    @NotBlank
+    @Size(min = 5, max = 200, message = "El nombre debe contener entre 5 y 200 caracteres.")
     private String nombre;
-    @CreationTimestamp
-    private LocalDateTime fechaRegistro;
 
     private Boolean activo;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private LocalDateTime fechaRegistro;
 
     public String getNombre() {
         return nombre;
