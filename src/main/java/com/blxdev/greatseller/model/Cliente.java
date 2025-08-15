@@ -15,16 +15,27 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "telefono")
     private String telefono;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "nit_ci")
     private String nit_ci;
+
+    @Column(name = "direccion")
     private String direccion;
 
-    @Column(nullable = false)
     private Boolean activo;
+
     @CreationTimestamp
     private LocalDateTime fechaRegistro;
+
     @OneToMany(mappedBy = "cliente")
     private List<Venta> ventas;
 

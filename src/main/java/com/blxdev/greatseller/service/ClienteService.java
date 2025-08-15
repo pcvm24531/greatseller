@@ -25,7 +25,7 @@ public class ClienteService {
     public Cliente save(ClienteCreateDTO clienteCreateDTO){
         Cliente cliente = new Cliente();
         cliente.setNombre(clienteCreateDTO.getNombre());
-        cliente.setDireccion(cliente.getDireccion());
+        cliente.setDireccion(clienteCreateDTO.getDireccion());
         cliente.setNit_ci(clienteCreateDTO.getNit_ci());
         cliente.setTelefono(clienteCreateDTO.getTelefono());
         cliente.setEmail(clienteCreateDTO.getEmail());
