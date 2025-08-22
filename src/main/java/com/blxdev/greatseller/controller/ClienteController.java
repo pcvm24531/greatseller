@@ -1,6 +1,7 @@
 package com.blxdev.greatseller.controller;
 
 import com.blxdev.greatseller.dto.ClienteCreateDTO;
+import com.blxdev.greatseller.dto.ClienteUpdateDTO;
 import com.blxdev.greatseller.model.Cliente;
 import com.blxdev.greatseller.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,22 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Cliente> create(@Validated @RequestBody ClienteCreateDTO clienteCreateDTO){
-        Cliente newCliente = clienteService.save(clienteCreateDTO);
+        Cliente newCliente = clienteService.create(clienteCreateDTO);
         return ResponseEntity.ok(newCliente);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> read(@PathVariable Long id){
+        return ResponseEntity.ok( clienteService.read(id) );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity <Cliente> update(@Validated @RequestBody ClienteUpdateDTO clienteUpdateDTO, @PathVariable Long id){
+        return ResponseEntity.ok(clienteService.update(clienteUpdateDTO, id));
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        clienteService.delete(id);
     }
 }
